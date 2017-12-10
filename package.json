@@ -1,0 +1,14 @@
+{
+  "name": "bada-on-ras",
+  "version": "1.0.0",
+  "description": "Raspberry 3 for BaDa IOTs KZ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "iot"
+  ],
+  "author": "Diep Nguyen",
+  "license": "ISC"
+}
