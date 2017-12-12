@@ -10,6 +10,8 @@ var port = new SerialPort(portName, {
     baudRate: 9600
 });
 
+var productKey = 'hFrPLqQKIbmU'; // demo product key
+
 /**
  * initializeApp with badaiots-kz.firebaseapp.com
  */
@@ -22,13 +24,11 @@ var app = firebase.initializeApp({
     messagingSenderId: "557393741006"
 });
 var db = firebase.database();
+var a = db.ref('product/'+productKey+'/kit');
 var delayMs = 2000;
 var listSensors = []; // update each delayMs ms
 var listLights = []; // listen data event
 var listAnalogs = []; // listen data event
-
-var productKey = 'hFrPLqQKIbmU';
-var a = db.ref('product/'+productKey+'/kit');
 
 
 var unoReady = false;
