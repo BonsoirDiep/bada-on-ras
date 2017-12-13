@@ -126,14 +126,16 @@ a.on("child_added", function(snapshot, prevChildKey) {
     } else if(b == 'sens'){
         if(c!=null) c.split(';').forEach(e=>{
             if(e && isSENSOR(e)) listSensors.push(e);
-        })
-        console.log('SENSOR: ', listSensors);
-        var sensorSerialCommand = 'ai ';
-        listSensors.forEach(e=>{
-            sensorSerialCommand+= e+ ' ';
-        })
-        sensorSerialCommand+='\r\n';
-        send2Uno(sensorSerialCommand);
+        });
+        if(listSensors.length>0){
+            console.log('SENSOR: ', listSensors);
+            var sensorSerialCommand = 'ai ';
+            listSensors.forEach(e=>{
+                sensorSerialCommand+= e+ ' ';
+            })
+            sensorSerialCommand+='\r\n';
+            send2Uno(sensorSerialCommand);
+        }
 
     }
 });
