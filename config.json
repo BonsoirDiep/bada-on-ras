@@ -1,6 +1,7 @@
 {
 	"user": "<update_soon>",
 	"loginKey": "<update_soon>",
-	"productKey": "hFrPLqQKIbmU",
+	"productKey": null,
+	"demoKey": "hFrPLqQKIbmU",
 	"portName": "/dev/ttyUSB0"
 }

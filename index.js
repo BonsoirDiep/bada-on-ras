@@ -14,7 +14,7 @@ var port = new SerialPort(portName, {
 
 
 var productKey = config.productKey; // note: 'hFrPLqQKIbmU' is demo product key
-
+if(!productKey) productKey = config.demoKey;
 /**
  * initializeApp with badaiots-kz.firebaseapp.com
  */
