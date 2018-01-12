@@ -21,7 +21,7 @@ In "config.json": You need "productKey" - *if not want to be limited by the demo
   npm start
 ```
 ***
-Design [here](https://badaiots-kz.herokuapp.com/nguoidung/thietke.html) (You need "productKey")
+Design [here](https://badaiots-kz.herokuapp.com/nguoidung/thietke.html) (You need "productKey" signup and request productKey (can send mail to: thandieu13@gmail.com))
 
 Note:
 ```text
