@@ -3,15 +3,17 @@ var SerialPort = require('serialport');
 const { StringDecoder } = require('string_decoder');
 const decoder = new StringDecoder('utf8');
 
-// var portName = '/dev/tty-usbserial1';
-// var portName = "/dev/ttyUSB0";
-var portName = 'COM5';
-// portName can found with command: npm run test
+var config = require("./config.json");
+
+var portName = config.portName; // examples: '/dev/tty-usbserial1', 'COM5', '/dev/ttyUSB0';
+// portName can found with command: 'npm run test'
 var port = new SerialPort(portName, {
     baudRate: 9600
 });
 
-var productKey = 'hFrPLqQKIbmU'; // demo product key
+
+
+var productKey = config.productKey; // note: 'hFrPLqQKIbmU' is demo product key
 
 /**
  * initializeApp with badaiots-kz.firebaseapp.com

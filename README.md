@@ -14,7 +14,9 @@ Get adress A of  connect via serial-port:
 ```bash
   npm run test
 ```
-Replace A in "index.js" as variable "portName"
+Replace A in "config.json" as variable "portName"
+
+In "config.json": You need "productKey" - *if not want to be limited by the demo*
 ```bash
   npm start
 ```
