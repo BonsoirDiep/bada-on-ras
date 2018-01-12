@@ -3,5 +3,6 @@
 	"loginKey": "<update_soon>",
 	"productKey": null,
 	"demoKey": "hFrPLqQKIbmU",
-	"portName": "/dev/ttyUSB0"
+	"portName": "COM5",
+	"portName2": "/dev/ttyUSB0"
 }

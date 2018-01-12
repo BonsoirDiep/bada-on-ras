@@ -30,6 +30,7 @@ var db = firebase.database();
 var a = db.ref('product/'+productKey+'/kit');
 var delayMs = 2000;
 var listSensors = []; // update each delayMs ms
+var listI2c = []; // update each delayMs ms
 var listLights = []; // listen data event
 var listAnalogs = []; // listen data event
 
@@ -53,7 +54,8 @@ port.on('data', function (data) {
             console.log('Err: ', json.err);
         }
         else{
-            db.ref(`product/${productKey}/sens`).update(json);
+            db.ref("product/"+productKey+"/sens").update(json);
+			// console.log(json);
         }
     } catch (_err){
         console.log(_err.message);
@@ -82,6 +84,17 @@ function send2Uno(cmd){
 }
 function isONOFF(n){
     var pins = [ 2, 4, 7, 8, 12, 13];
+    if(typeof(n)=='number'){
+        return (pins.indexOf(n) >-1);
+    } else if(typeof(n)=='string'){
+        var b = parseInt(n);
+        if(b.toString() === n) return (pins.indexOf(b) >-1);
+    }
+    
+    return false;
+}
+function isI2c(n){
+    var pins = [ 2, 4];
     if(typeof(n)=='number'){
         return (pins.indexOf(n) >-1);
     } else if(typeof(n)=='string'){
@@ -140,7 +153,20 @@ a.on("child_added", function(snapshot, prevChildKey) {
             send2Uno(sensorSerialCommand);
         }
 
-    }
+    } else if(b == 'i2c'){
+		if(c!=null) c.split(';').forEach(e=>{
+            if(e && isI2c(e)) listI2c.push(e);
+        })
+		if(listI2c.length>0){
+            console.log('I2C: ', listI2c);
+            var sensorSerialCommand = 'i2 '; //i2c
+            listI2c.forEach(e=>{
+                sensorSerialCommand+= e+ ' ';
+            })
+            sensorSerialCommand+='\r\n';
+            send2Uno(sensorSerialCommand);
+        }
+	}
 });
 // user rebuild designs
 a.on("child_removed", function(snapshot, prevChildKey) {
@@ -157,6 +183,10 @@ a.on("child_removed", function(snapshot, prevChildKey) {
     } else if(b == 'sens'){
         if(c!=null) c.split(';').forEach(e=>{
             if(e) listSensors.pop(e);
+        })
+    } else if(b == 'i2c'){
+        if(c!=null) c.split(';').forEach(e=>{
+            if(e) listI2c.pop(e);
         })
     }
 });
