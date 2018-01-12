@@ -4,7 +4,7 @@ const { StringDecoder } = require('string_decoder');
 const decoder = new StringDecoder('utf8');
 
 // var portName = '/dev/tty-usbserial1';
-// var posrtName = "/dev/ttyUSB0";
+// var portName = "/dev/ttyUSB0";
 var portName = 'COM5';
 // portName can found with command: npm run test
 var port = new SerialPort(portName, {
