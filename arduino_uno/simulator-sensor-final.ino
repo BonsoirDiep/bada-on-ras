@@ -9,12 +9,13 @@
 
 SerialCommand sCmd;     // The demo SerialCommand object
 
-int count;
 int sensor[5];
 int sensor2[5];
+unsigned long time1 = 0;
+
 void setup() {
-  //pinMode(2, OUTPUT); // i2c support
-  //pinMode(4, OUTPUT); // i2c support
+  //pinMode(2, OUTPUT); // oneWire support
+  //pinMode(4, OUTPUT); // oneWire support
   pinMode(7, OUTPUT);
   pinMode(8, OUTPUT);
   pinMode(12, OUTPUT);
@@ -26,35 +27,34 @@ void setup() {
   sCmd.addCommand("ao", ao_fc);
   sCmd.addCommand("ai", ai_fc);
   sCmd.addCommand("do", do_fc);
-  sCmd.addCommand("i2", onewire_fc);
-  sCmd.addCommand("check", check_fc);
-  sCmd.setDefaultHandler(unrecognized); // Handler for command that isn't matched  (says "What?")
+  sCmd.addCommand("i1", onewire_fc);
+  sCmd.setDefaultHandler(unrecognized); // Handler for command that isn't matched
   Serial.println("Ready");
 }
 
 void loop() {
   sCmd.readSerial();
-  check_fc();
-  check_fc2();
-  delay(200);
+  if ( (unsigned long) abs(millis() - time1) > 1000 ){
+	  check_fc();
+	  check_fc2();
+	  time1 = millis();
+  }
 }
 
 void check_fc() {
   int i;
   for(i = 0;i<5;i++){
     if(sensor[i]>0){
-      Serial.print("{\"node");
-      Serial.print(sensor[i]);
-      Serial.print("\":");
-	  
-      //Serial.print(random(23, 32));
 	  int reading = analogRead(sensor[i]);
       float voltage = reading * 5.0 / 1024.0;
       // float tempC = voltage * 100.0;
-      Serial.print(voltage);
+	  // voltage = random(23, 32);
 	  
+	  Serial.print("{\"node");
+      Serial.print(sensor[i]);
+      Serial.print("\":");
+      Serial.print(voltage);
       Serial.println("}");
-      delay(90);
     }
   }
 }
@@ -71,7 +71,6 @@ void check_fc2() {
       Serial.print("\":");
 	  Serial.print(sensors.getTempCByIndex(0));//Serial.print(random(23, 32));
       Serial.println("}");
-      delay(90);
     }
   }
 }
@@ -111,7 +110,7 @@ void ao_fc() {
 
 
 void ai_fc() {
-  count = 0;
+  int count = 0;
   for(count = 0;count<5;count++){
     sensor[count] = 0;
   }
@@ -136,7 +135,7 @@ void ai_fc() {
 }
 
 void onewire_fc() {
-  count = 0;
+  int count = 0;
   for(count = 0;count<5;count++){
     sensor2[count] = 0;
   }

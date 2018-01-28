@@ -25,8 +25,8 @@ Design [here](https://badaiots-kz.herokuapp.com/nguoidung/thietke.html) (You nee
 
 Note:
 ```text
-id [ 3, 5, 6, 9, 10, 11] 		-> node with type ao
-id [ 7, 8, 12, 13] 				-> node with type do
-id [ 2, 4] 						-> node with type i2c
-id [ 14, 15, 16, 17, 18, 19] 	-> node with type ai
+id [ 3, 5, 6, 9, 10, 11] 		-> node with type "ao"
+id [ 7, 8, 12, 13] 				-> node with type "do"
+id [ 2, 4] 						-> node with type "one"
+id [ 14, 15, 16, 17, 18, 19] 	-> node with type "ai"
 ```

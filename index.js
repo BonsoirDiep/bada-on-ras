@@ -30,7 +30,7 @@ var db = firebase.database();
 var a = db.ref('product/'+productKey+'/kit');
 var delayMs = 2000;
 var listSensors = []; // update each delayMs ms
-var listI2c = []; // update each delayMs ms
+var listOnes = []; // update each delayMs ms
 var listLights = []; // listen data event
 var listAnalogs = []; // listen data event
 
@@ -93,7 +93,7 @@ function isONOFF(n){
     
     return false;
 }
-function isI2c(n){
+function isOneWire(n){
     var pins = [ 2, 4];
     if(typeof(n)=='number'){
         return (pins.indexOf(n) >-1);
@@ -153,14 +153,14 @@ a.on("child_added", function(snapshot, prevChildKey) {
             send2Uno(sensorSerialCommand);
         }
 
-    } else if(b == 'i2c'){
+    } else if(b == 'one'){
 		if(c!=null) c.split(';').forEach(e=>{
-            if(e && isI2c(e)) listI2c.push(e);
+            if(e && isOneWire(e)) listOnes.push(e);
         })
-		if(listI2c.length>0){
-            console.log('I2C: ', listI2c);
-            var sensorSerialCommand = 'i2 '; //i2c
-            listI2c.forEach(e=>{
+		if(listOnes.length>0){
+            console.log('ONE: ', listOnes);
+            var sensorSerialCommand = 'i1 '; //one
+            listOnes.forEach(e=>{
                 sensorSerialCommand+= e+ ' ';
             })
             sensorSerialCommand+='\r\n';
@@ -184,9 +184,9 @@ a.on("child_removed", function(snapshot, prevChildKey) {
         if(c!=null) c.split(';').forEach(e=>{
             if(e) listSensors.pop(e);
         })
-    } else if(b == 'i2c'){
+    } else if(b == 'one'){
         if(c!=null) c.split(';').forEach(e=>{
-            if(e) listI2c.pop(e);
+            if(e) listOnes.pop(e);
         })
     }
 });
