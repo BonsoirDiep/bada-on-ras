@@ -174,19 +174,31 @@ a.on("child_removed", function(snapshot, prevChildKey) {
     var c = snapshot.val();
     if(b == 'lights'){
         if(c!=null) c.split(';').forEach(e=>{
-            if(e) listLights.pop('node'+e);
+			if(e){
+				var hack = listLights.indexOf('node'+e);
+				if(hack>=0) listLights.splice(hack,1);
+			}
         })
     } else if(b == 'analogs'){
         if(c!=null) c.split(';').forEach(e=>{
-            if(e) listAnalogs.pop('node'+e);
+			if(e) {
+				var hack = listAnalogs.indexOf('node'+e);
+				if(hack>=0) listAnalogs.splice(hack,1);
+			}
         })
     } else if(b == 'sens'){
         if(c!=null) c.split(';').forEach(e=>{
-            if(e) listSensors.pop(e);
+			if(e){
+				var hack = listSensors.indexOf(e);
+				if(hack>=0) listSensors.splice(hack,1);
+			}
         })
     } else if(b == 'one'){
         if(c!=null) c.split(';').forEach(e=>{
-            if(e) listOnes.pop(e);
+			if(e){
+				var hack = listOnes.indexOf(e);
+				if(hack>=0) listOnes.splice(hack,1);
+			}
         })
     }
 });
