@@ -1,5 +1,7 @@
 # BaDa IOTs KZ Demo
 
+Recommended use [bada-ras-firmata](https://github.com/BonsoirDiep/bada-ras-firmata)
+
 Connect Raspberry Pi3 to Arduino Uno via serial port
 
 	// Code for Arduino Uno "arduino_uno/*.ino"
@@ -20,13 +22,20 @@ In "config.json": You need "productKey" - *if not want to be limited by the demo
 ```bash
   npm start
 ```
+
+Control and monitoring
+```text
+	index.js(with command: npm start) -> badaiots-kz.herokuapp.com/nguoidung/theodoi.html
+	index2.js(is not ready yet)       -> badaiots-kz.herokuapp.com/nguoidung/theodoi2.html
+```
+
 ***
 Design [here](https://badaiots-kz.herokuapp.com/nguoidung/thietke.html) (You need "productKey" signup and request productKey (can send mail to: thandieu13@gmail.com))
 
 Note:
 ```text
-id [ 3, 5, 6, 9, 10, 11] 		-> node with type "ao"
-id [ 7, 8, 12, 13] 				-> node with type "do"
-id [ 2, 4] 						-> node with type "one"
-id [ 14, 15, 16, 17, 18, 19] 	-> node with type "ai"
+id [ 3, 5, 6, 9, 10, 11]        -> node with type "ao"
+id [ 7, 8, 12, 13]              -> node with type "do"
+id [ 2, 4]                      -> node with type "one"
+id [ 14, 15, 16, 17, 18, 19]    -> node with type "ai"
 ```
