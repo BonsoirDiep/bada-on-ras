@@ -25,8 +25,7 @@ In "config.json": You need "productKey" - *if not want to be limited by the demo
 
 Control and monitoring
 ```text
-	index.js(with command: npm start) -> badaiots-kz.herokuapp.com/nguoidung/theodoi.html
-	index2.js(is not ready yet)       -> badaiots-kz.herokuapp.com/nguoidung/theodoi2.html
+	-> badaiots-kz.herokuapp.com/nguoidung/theodoi.html
 ```
 
 ***
